@@ -1,0 +1,18 @@
+operation1.input = "AsyncOperation1"
+        operation1.completionBlock = {
+            print("result1", operation1.output ?? "")
+        }
+        
+        operationQueue.addOperation(operation1)
+        queue.asyncAfter(deadline: .now() + 1) {
+            operation1.cancel()
+        }
+        
+        let operation2 = SimpleAsyncOperation()
+        operation2.input = "AsyncOperation2"
+        operation2.completionBlock = {
+            print("result2", operation2.output ?? "")
+        }
+        
+        operationQueue.addOperation(operation2)
+    }
